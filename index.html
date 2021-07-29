@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        .nsh {
+            display: none;
+        }
+        
+        #x {
+            float: right;
+        }
+        
+        body {
+            background: yellowgreen;
+        }
+        
+        form {
+            margin-top: 120px;
+            border: 2px solid black;
+            width: Auto;
+            margin: 200px auto;
+        }
+        
+        .container {
+            background: black;
+            color: white;
+        }
+        
+        #msg,
+        #message {
+            color: red;
+            background: white;
+        }
+        
+        input {
+            margin-left: 100px;
+            margin-right: auto;
+            ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="x" onclick="fun()" type="button">signup</button>
+        <p id="after"></p>
+        <form id="fm" class="nsh offset-3" onsubmit="return check()" action='https://shekharkummari.github.io/#home' method="GET">
+            <input type="text" id="usd" placeholder="user name">
+            <br>
+            <p id="msg"></p>
+            <br>
+            <input type="password" id="pwd" placeholder="password">
+            <br>
+            <input type="checkbox" onclick="showpassword()">showpassword;
+            <p id="message"></p>
+            <br>
+            <input type="reset" value="reset">
+            <input type="submit" value="submit">
+
+        </form>
+    </div>
+    <script>
+        document.getElementById("usd").onfocus = function() {
+            document.getElementById("msg").innerHTML = "";
+        }
+        document.getElementById("pwd").onfocus = function() {
+            document.getElementById("message").innerHTML = "";
+        }
+
+        function fun() {
+            document.getElementById("x").style.display = "none";
+            document.getElementById("fm").classList.remove("nsh");
+        }
+
+        function showpassword() {
+            var x = document.getElementById("pwd");
+            if (x.type === "password")
+                x.type = "text";
+            else {
+                x.type = "password";
+            }
+        }
+
+        function check() {
+            var u = document.getElementById("usd").value;
+            var p = document.getElementById("pwd").value;
+            var flag = true;
+            if (u.indexOf("@") <= 0) {
+                document.getElementById("msg").innerHTML = "**invalid username";
+                flag = false;
+                return false;
+            }
+            var up = /[A-Z]/g;
+            var lp = /[a-z]/g;
+            var np = /[0-9]/g;
+            if (up.test(p) == false || lp.test(p) == false || np.test(p) == false || p.length() < 8) {
+                document.getElementById("message").innerHTML = "**invalid password";
+                flag = false;
+                return false;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
